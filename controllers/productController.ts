@@ -37,3 +37,25 @@ router.get('/product', async (req: Request, res: Response) => {
         res.status(500).json({ message: error })
     }
 })
+
+router.get('/product/:id', async (req: Request, res: Response) => {
+    try{
+      const data = await Product.findById(req.params.id);
+      res.json(data)
+    }
+    catch(error){
+      res.status(500).json({message: error})
+    }
+  })
+  
+  router.delete('/product/:id', async (req: Request, res: Response) => {
+    try{
+      const id = req.params.id;
+      await Product.findByIdAndDelete(id)
+      const data = await Product.find();
+      res.send(data);
+    }
+    catch(error){
+      res.status(500).json({message: error})
+    }
+  })

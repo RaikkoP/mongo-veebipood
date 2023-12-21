@@ -27,7 +27,7 @@ router.post('/user', async (req: Request, res: Response) => {
             lastName: req.body.lastName,
             password: req.body.password,
             admin: req.body.admin,
-            created: Date.now(),
+            created: new Date(),
             personalDocument: savedPersonalDocument._id,
             contactData: savedContactData._id
         })
